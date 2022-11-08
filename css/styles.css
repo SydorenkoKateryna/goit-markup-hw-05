@@ -16,10 +16,16 @@
     0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
   --portfolio-card-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
-    --portfolio-button-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
+  --portfolio-button-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1),
+    0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
 
   --icon-color: #afb1b8;
   --icon-background-color: rgba(255, 255, 255, 0.1);
+
+  --overlay-background-color: rgba(33, 150, 243, 0.9);
+  --cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --activities-background-color: rgba(47, 48, 58, 0.8);
 }
 
 /* Загальні стилі */
@@ -168,10 +174,14 @@ img {
 
 .site-nav .link {
   color: var(--primary-title-color);
+
+  transition: color 250ms var(--cubic-bezier);
 }
 
 .contacts .link {
   color: inherit;
+
+  transition: color 250ms var(--cubic-bezier);
 }
 
 .site-nav .link:hover,
@@ -183,12 +193,27 @@ img {
 
 .link.current {
   color: var(--accent-color);
+  position: relative;
 }
 
 .email-icon,
 .phone-icon {
   margin-right: 10px;
   fill: currentColor;
+}
+
+/* Тестова версія */
+.link.current::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform: translateY(1px);
+
+  border-radius: 2px;
+  background-color: var(--accent-color);
 }
 
 /* Унікальний контент головної сторінки */
@@ -302,8 +327,33 @@ img {
 }
 
 .flex-activities > .item {
+  position: relative;
+
   width: calc((100% - 3 * 30px) / 3);
   margin-left: 30px;
+}
+
+/* Тестова версія */
+.activities-description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--activities-background-color);
+}
+
+.activities-description > .subtitle {
+  font-size: 14px;
+  line-height: 1.14;
+  text-transform: uppercase;
+
+  color: var(--primary-white-color);
 }
 
 /* Наша команда */
@@ -367,6 +417,9 @@ img {
 
   color: var(--icon-color);
   background-color: var(--primary-white-color);
+
+  transition: color 250ms var(--cubic-bezier),
+    background-color 250ms var(--cubic-bezier);
 }
 
 .worker-description .link:hover,
@@ -402,6 +455,9 @@ img {
 
   color: var(--icon-color);
   background-color: var(--primary-white-color);
+
+  transition: color 250ms var(--cubic-bezier),
+    border-color 250ms var(--cubic-bezier);
 }
 
 .companies .link:hover,
@@ -451,6 +507,8 @@ img {
   line-height: 1.71;
 
   color: var(--secondary-text-color);
+
+  transition: color 250ms var(--cubic-bezier);
 }
 
 .link.map {
@@ -497,6 +555,8 @@ img {
 
   color: var(--primary-white-color);
   background-color: var(--icon-background-color);
+
+  transition: background-color 250ms var(--cubic-bezier);
 }
 
 .join-in .link:hover,
@@ -524,6 +584,10 @@ img {
 
   font-weight: 500;
   line-height: 1.63;
+
+  transition: color 250ms var(--cubic-bezier),
+    background-color 250ms var(--cubic-bezier),
+    border-color 250ms var(--cubic-bezier), box-shadow 250ms var(--cubic-bezier);
 }
 
 .button-list .item + .item {
@@ -557,6 +621,9 @@ img {
   width: calc((100% - 3 * 30px) / 3);
   margin-left: 30px;
   margin-top: 30px;
+
+  box-shadow: none;
+  transition: box-shadow 250ms var(--cubic-bezier);
 }
 
 .portfolio-list > .item:hover {
@@ -589,4 +656,44 @@ img {
   font-size: 16px;
   line-height: 1.86;
   color: var(--primary-text-color);
+}
+
+/* Тестова версія */
+.portfolio-list .thumb {
+  position: relative;
+  width: 370px;
+  height: 294px;
+
+  overflow: hidden;
+}
+
+.portfolio-list .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--cubic-bezier);
+
+  background-color: var(--overlay-background-color);
+}
+
+.portfolio-list > .item:hover .overlay {
+  transform: translateY(0);
+}
+
+.overlay > .text {
+  padding-left: 24px;
+  padding-right: 24px;
+
+  font-size: 18px;
+  line-height: 1.56;
+
+  color: var(--primary-white-color);
 }
