@@ -12,7 +12,7 @@
 
   --header-border: #ececec;
   --card-border: #eeeeee;
-  --team-card-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+  --card-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
   --portfolio-card-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
@@ -26,6 +26,8 @@
   --cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
 
   --activities-background-color: rgba(47, 48, 58, 0.8);
+  --backdrop-background-color: rgba(0, 0, 0, 0.2);
+  --button-close-border: rgba(0, 0, 0, 0.1);
 }
 
 /* Загальні стилі */
@@ -271,6 +273,66 @@ img {
   background-color: var(--accent-color);
 }
 
+/* Тестова версія */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition: opacity 250ms var(--cubic-bezier), visibility 250ms var(--cubic-bezier);
+
+  background-color: var(--backdrop-background-color);
+
+  z-index: 1;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 528px;
+  min-height: 581px;
+  padding: 8px;
+
+  transform: translate(-50%, -50%) scale(1);
+
+  transition: transform 250ms var(--cubic-bezier);
+
+  border-radius: 4px;
+  background-color: var(--primary-white-color);
+  box-shadow: var(--card-shadow);
+  border-radius: 4px;
+}
+
+.button.modal-close {
+  display: flex;
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  
+  border-radius: 50%;
+  border-color: var(--button-close-border);
+
+  background-color: var(--primary-white-color);
+}
+
 /* Особливості */
 .flex-features {
   display: flex;
@@ -371,7 +433,7 @@ img {
   margin-left: 30px;
 
   background-color: var(--primary-white-color);
-  box-shadow: var(--team-card-shadow);
+  box-shadow: var(--card-shadow);
   border-radius: 0px 0px 4px 4px;
 }
 
