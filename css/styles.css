@@ -204,7 +204,6 @@ img {
   fill: currentColor;
 }
 
-/* Тестова версія */
 .link.current::after {
   content: "";
   position: absolute;
@@ -273,7 +272,6 @@ img {
   background-color: var(--accent-color);
 }
 
-/* Тестова версія */
 .backdrop {
   position: fixed;
   top: 0;
@@ -284,7 +282,8 @@ img {
   opacity: 1;
   visibility: visible;
 
-  transition: opacity 250ms var(--cubic-bezier), visibility 250ms var(--cubic-bezier);
+  transition: opacity 250ms var(--cubic-bezier),
+    visibility 250ms var(--cubic-bezier);
 
   background-color: var(--backdrop-background-color);
 
@@ -305,7 +304,7 @@ img {
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 528px;
+  width: 528px;
   min-height: 581px;
   padding: 8px;
 
@@ -326,7 +325,7 @@ img {
   align-items: center;
   width: 30px;
   height: 30px;
-  
+
   border-radius: 50%;
   border-color: var(--button-close-border);
 
@@ -395,7 +394,6 @@ img {
   margin-left: 30px;
 }
 
-/* Тестова версія */
 .activities-description {
   position: absolute;
   bottom: 0;
@@ -403,7 +401,7 @@ img {
   width: 100%;
   height: 70px;
 
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 
@@ -683,12 +681,19 @@ img {
   width: calc((100% - 3 * 30px) / 3);
   margin-left: 30px;
   margin-top: 30px;
+}
+
+.portfolio-list .link {
+  display: block;
+  width: 370px;
+  height: 404px;
 
   box-shadow: none;
   transition: box-shadow 250ms var(--cubic-bezier);
 }
 
-.portfolio-list > .item:hover {
+.portfolio-list .link:hover,
+.portfolio-list .link:focus {
   box-shadow: var(--portfolio-card-shadow);
 }
 
@@ -720,7 +725,6 @@ img {
   color: var(--primary-text-color);
 }
 
-/* Тестова версія */
 .portfolio-list .thumb {
   position: relative;
   width: 370px;
@@ -736,7 +740,7 @@ img {
   width: 100%;
   height: 100%;
 
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 
@@ -746,7 +750,8 @@ img {
   background-color: var(--overlay-background-color);
 }
 
-.portfolio-list > .item:hover .overlay {
+.portfolio-list .link:hover .overlay,
+.portfolio-list .link:focus .overlay {
   transform: translateY(0);
 }
 
