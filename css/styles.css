@@ -756,8 +756,7 @@ img {
 }
 
 .overlay > .text {
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 24px;
 
   font-size: 18px;
   line-height: 1.56;
